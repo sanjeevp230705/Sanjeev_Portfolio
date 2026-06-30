@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjeev P — Computer Science (IoT) Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c1210;
+    --surface: #121a17;
+    --surface-2: #16201c;
+    --line: #233029;
+    --teal: #5eead4;
+    --copper: #f2a65a;
+    --text: #e9efea;
+    --muted: #8ea096;
+    --muted-2: #5f7268;
+    --radius: 4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  body::before{
+    content:'';
+    position: fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+  h1,h2,h3,.display{ font-family: 'Space Grotesk', sans-serif; }
+
+  a{ color: inherit; text-decoration: none; }
+
+  ::selection{ background: var(--teal); color: var(--bg); }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(12,18,16,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:0.5px;
+  }
+  .brand .dot{
+    width:9px; height:9px; border-radius:50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: pulse 2.4s infinite ease-in-out;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.45; transform:scale(0.78); }
+  }
+  .navlinks{ display:flex; gap:28px; font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.04em; color: var(--muted);}
+  .navlinks a:hover{ color: var(--teal); }
+  .navlinks span{ color: var(--muted-2); margin-right:4px; }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 96px 0 64px;
+    position: relative;
+  }
+  .status-line{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    border: 1px solid rgba(94,234,212,0.3);
+    background: rgba(94,234,212,0.06);
+    padding: 6px 12px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .status-line .bar{
+    width:6px;height:6px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 6px var(--teal);
+  }
+  .hero h1{
+    font-size: clamp(40px, 6.4vw, 76px);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 .accent{ color: var(--teal); }
+  .hero .role{
+    margin-top: 22px;
+    font-size: clamp(15px, 2vw, 19px);
+    color: var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    max-width: 640px;
+    display:flex; flex-wrap:wrap; gap: 10px 0;
+  }
+  .role .seg{ display:flex; align-items:center;}
+  .role .sep{ color: var(--copper); margin: 0 12px; }
+  .hero p.lead{
+    margin-top: 28px;
+    max-width: 620px;
+    color: var(--text);
+    font-size: 16.5px;
+    opacity: 0.88;
+  }
+  .hero .cta-row{
+    margin-top: 40px;
+    display:flex; gap: 16px; flex-wrap: wrap;
+    align-items:center;
+  }
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 13px 22px;
+    border-radius: var(--radius);
+    border: 1px solid var(--teal);
+    color: var(--bg);
+    background: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn:hover{ background: transparent; color: var(--teal); }
+  .btn.ghost{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+  .btn.ghost:hover{ border-color: var(--copper); color: var(--copper); }
+
+  .contact-strip{
+    margin-top: 56px;
+    display:flex; flex-wrap:wrap; gap: 28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+  .contact-strip a:hover{ color: var(--teal); }
+  .contact-strip span.lbl{ color: var(--muted-2); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 88px 0; position: relative; }
+  .section-head{
+    display:flex; align-items: baseline; gap: 16px;
+    margin-bottom: 44px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+    letter-spacing: 0.08em;
+  }
+  .section-head h2{
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 600;
+  }
+  .section-head .rule{
+    flex:1; height:1px; background: var(--line);
+  }
+
+  /* ---------- TRACE (signature element) ---------- */
+  .trace-rail{
+    position:absolute; left: -1px; top:0; bottom:0; width:1px;
+    background: var(--line);
+    display:none;
+  }
+  @media(min-width:900px){ .trace-rail{ display:block; } }
+
+  /* ---------- SUMMARY ---------- */
+  .summary-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr; gap: 56px;
+  }
+  @media(max-width:860px){ .summary-grid{ grid-template-columns:1fr; } }
+  .summary-grid p{ color: var(--muted); font-size: 16px; }
+  .summary-grid p + p{ margin-top: 16px; }
+  .stat-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .stat-card .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 30px; font-weight: 700; color: var(--teal);
+  }
+  .stat-card .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px; color: var(--muted); letter-spacing: 0.04em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-board{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  @media(max-width:760px){ .skill-board{ grid-template-columns: repeat(2,1fr); } }
+  .skill-cell{
+    background: var(--surface);
+    padding: 24px 20px;
+  }
+  .skill-cell h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--copper); letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--text);
+    background: var(--surface-2);
+    transition: all .2s ease;
+  }
+  .chip:hover{ border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+  /* ---------- TIMELINE (education + internships) ---------- */
+  .timeline{ position: relative; padding-left: 28px; }
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background: var(--line);
+  }
+  .t-item{ position:relative; margin-bottom: 36px; }
+  .t-item:last-child{ margin-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-28px; top:6px;
+    width:11px; height:11px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--teal);
+  }
+  .t-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px; color: var(--muted-2);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .t-item h3{ font-size: 18px; font-weight: 600; }
+  .t-item .org{ color: var(--copper); font-size: 14px; margin-top: 2px; font-family:'JetBrains Mono', monospace;}
+  .t-item p{ color: var(--muted); margin-top: 8px; font-size: 14.5px; max-width: 620px;}
+  .t-item .score{
+    display:inline-block; margin-top:8px;
+    font-family:'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--teal); border: 1px solid rgba(94,234,212,0.3);
+    padding: 3px 9px; border-radius: 100px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:760px){ .project-grid{ grid-template-columns: 1fr; } }
+  .project-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px;
+    position: relative;
+    overflow:hidden;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .project-card:hover{ border-color: var(--teal); transform: translateY(-3px); }
+  .project-card .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--copper);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display:inline-block;
+    border: 1px solid rgba(242,166,90,0.3);
+    padding: 3px 9px; border-radius: 100px;
+  }
+  .project-card h3{ font-size: 21px; font-weight:600; margin-bottom: 12px; }
+  .project-card p{ color: var(--muted); font-size: 14.5px; }
+  .project-card .corner{
+    position:absolute; top:0; right:0; width:48px; height:48px;
+    border-left: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    border-bottom-left-radius: var(--radius);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--muted-2);
+  }
+
+  /* ---------- CERTS / ACHIEVEMENTS ---------- */
+  .cert-list{ display:flex; flex-direction:column; gap: 1px; background: var(--line); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden;}
+  .cert-row{
+    background: var(--surface);
+    padding: 16px 22px;
+    display:flex; justify-content:space-between; align-items:center;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .cert-row .name{ font-weight: 500; }
+  .cert-row .issuer{
+    font-family:'JetBrains Mono', monospace; font-size:12px; color: var(--muted);
+  }
+
+  .achv{
+    margin-top: 44px;
+    display:grid; grid-template-columns: repeat(3,1fr); gap: 18px;
+  }
+  @media(max-width:760px){ .achv{ grid-template-columns: 1fr; } }
+  .achv-card{
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; background: var(--surface);
+  }
+  .achv-card .star{ color: var(--copper); font-size: 18px; margin-bottom: 10px; display:block; }
+  .achv-card p{ font-size: 13.5px; color: var(--muted); }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 64px 0 40px;
+  }
+  .contact-cta{
+    text-align:center;
+    max-width: 560px; margin: 0 auto 48px;
+  }
+  .contact-cta h2{ font-size: clamp(26px,4vw,40px); margin-bottom: 16px; }
+  .contact-cta p{ color: var(--muted); margin-bottom: 28px; }
+  .contact-grid{
+    display:flex; justify-content:center; gap: 32px; flex-wrap: wrap;
+    font-family:'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .contact-grid a{ color: var(--text); }
+  .contact-grid a:hover{ color: var(--teal); }
+  .foot-bottom{
+    margin-top: 60px; text-align:center;
+    font-family:'JetBrains Mono', monospace; font-size: 11.5px; color: var(--muted-2);
+  }
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> SANJEEV&nbsp;P</div>
+    <div class="navlinks">
+      <a href="#summary"><span>01</span>About</a>
+      <a href="#skills"><span>02</span>Skills</a>
+      <a href="#experience"><span>03</span>Experience</a>
+      <a href="#projects"><span>04</span>Projects</a>
+      <a href="#certs"><span>05</span>Certs</a>
+      <a href="#contact"><span>06</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="status-line"><span class="bar"></span> AVAILABLE FOR INTERNSHIPS &amp; ENTRY-LEVEL ROLES</div>
+    <h1>Sanjeev P<br><span class="accent">builds at the edge</span><br>of software &amp; hardware.</h1>
+    <div class="role">
+      <span class="seg">Computer Science (IoT) Engineer</span><span class="sep">/</span>
+      <span class="seg">Software Developer</span><span class="sep">/</span>
+      <span class="seg">Embedded Systems</span>
+    </div>
+    <p class="lead">Final-year engineering student wiring together Java, Python, C, AI and IoT into working systems — from number-plate recognition to smart parking. Based in Tiruchengode, Namakkal, Tamil Nadu.</p>
+    <div class="cta-row">
+      <a class="btn" href="mailto:sanjeev230705@gmail.com">Get in touch →</a>
+      <a class="btn ghost" href="#projects">View projects</a>
+    </div>
+    <div class="contact-strip">
+      <a href="mailto:sanjeev230705@gmail.com"><span class="lbl">EMAIL </span>sanjeev230705@gmail.com</a>
+      <a href="tel:+918122669267"><span class="lbl">PHONE </span>+91 81226 69267</a>
+      <span><span class="lbl">LOCATION </span>Tiruchengode, Namakkal, Tamil Nadu</span>
+    </div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="section-head"><span class="section-tag">01 / ABOUT</span><div class="rule"></div></div>
+    <div class="summary-grid reveal">
+      <div>
+        <p>Motivated Computer Science (IoT) student with hands-on knowledge of Java, Python, C, AI, and IoT, seeking an entry-level Software Developer or Embedded Systems role.</p>
+        <p>Eager to apply programming, problem-solving, and analytical skills to develop innovative solutions — passionate about continuous learning, teamwork, and adapting to emerging technologies.</p>
+      </div>
+      <div>
+        <div class="stat-card"><div class="num">7.4</div><div class="lbl">CGPA — Semester V</div></div>
+        <div class="stat-card"><div class="num">99%</div><div class="lbl">SSLC (Class X) score</div></div>
+        <div class="stat-card"><div class="num">2</div><div class="lbl">Internships completed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-tag">02 / SKILLS</span><div class="rule"></div></div>
+    <div class="skill-board reveal">
+      <div class="skill-cell">
+        <h4>LANGUAGES</h4>
+        <div class="chip-row"><span class="chip">C</span><span class="chip">Python</span><span class="chip">Java</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>IOT / EMBEDDED</h4>
+        <div class="chip-row"><span class="chip">Raspberry Pi</span><span class="chip">Arduino</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>WEB</h4>
+        <div class="chip-row"><span class="chip">HTML</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>DOMAINS</h4>
+        <div class="chip-row"><span class="chip">AI / ML</span><span class="chip">IoT</span><span class="chip">OOP</span><span class="chip">Image Processing</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>SOFT SKILLS</h4>
+        <div class="chip-row"><span class="chip">Problem Solving</span><span class="chip">Teamwork</span><span class="chip">Communication</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>MORE SOFT SKILLS</h4>
+        <div class="chip-row"><span class="chip">Quick Learner</span><span class="chip">Adaptability</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>LANGUAGES SPOKEN</h4>
+        <div class="chip-row"><span class="chip">Tamil — Native</span><span class="chip">English — Professional</span></div>
+      </div>
+      <div class="skill-cell">
+        <h4>STATUS</h4>
+        <div class="chip-row"><span class="chip" style="color:var(--teal); border-color:rgba(94,234,212,0.3);">● Currently Learning</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="section-tag">03 / EDUCATION &amp; EXPERIENCE</span><div class="rule"></div></div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-meta">2023 — 2027</div>
+        <h3>B.E. — Computer Science &amp; Engineering (IoT)</h3>
+        <div class="org">K.S.R. College of Engineering, Namakkal, Tamil Nadu</div>
+        <span class="score">CGPA 7.4 — Semester V</span>
+      </div>
+      <div class="t-item">
+        <div class="t-meta">Internship</div>
+        <h3>Java Development Intern</h3>
+        <div class="org">Rejola, Chennai</div>
+        <p>Learned core Java concepts and Object-Oriented Programming principles. Developed basic Java applications and improved overall coding proficiency.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-meta">Internship</div>
+        <h3>IoT Intern</h3>
+        <div class="org">UIBO Infotech</div>
+        <p>Gained hands-on experience with Raspberry Pi and various IoT devices. Interfaced sensors and hardware modules for real-world IoT applications.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-meta">2023</div>
+        <h3>Higher Secondary (Class XII)</h3>
+        <div class="org">Shri Ramachandira Matric Hr. Sec. School</div>
+        <span class="score">72.5%</span>
+      </div>
+      <div class="t-item">
+        <div class="t-meta">2021</div>
+        <h3>SSLC (Class X)</h3>
+        <div class="org">Shri Ramachandira Matric Hr. Sec. School</div>
+        <span class="score">99%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="section-tag">04 / PROJECTS</span><div class="rule"></div></div>
+    <div class="project-grid reveal">
+      <div class="project-card">
+        <div class="corner">01</div>
+        <span class="tag">AI + IoT</span>
+        <h3>Vehicle Monitoring System</h3>
+        <p>Designed an AI-based number plate detection system using image processing for real-time vehicle identification. Integrated IoT technology to enable automated data transmission and smart traffic monitoring.</p>
+      </div>
+      <div class="project-card">
+        <div class="corner">02</div>
+        <span class="tag">IoT</span>
+        <h3>Smart Parking System</h3>
+        <p>Developed a smart parking system using IoT sensors to monitor parking slot availability in real time, displaying available spaces on a dashboard to improve parking management efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="section-head"><span class="section-tag">05 / CERTIFICATIONS</span><div class="rule"></div></div>
+    <div class="cert-list reveal">
+      <div class="cert-row"><span class="name">Programming in C</span><span class="issuer">Infosys Springboard</span></div>
+      <div class="cert-row"><span class="name">Responsible AI</span><span class="issuer">Google Cloud</span></div>
+      <div class="cert-row"><span class="name">Cyber Security</span><span class="issuer">NPTEL</span></div>
+      <div class="cert-row"><span class="name">Cloud Computing</span><span class="issuer">NPTEL</span></div>
+    </div>
+
+    <div class="achv reveal">
+      <div class="achv-card"><span class="star">★</span><p>Scored an outstanding 99% in SSLC (Class X), Shri Ramachandira Matric Hr. Sec. School, 2021.</p></div>
+      <div class="achv-card"><span class="star">★</span><p>Earned multiple industry certifications from Infosys Springboard, Google Cloud, and NPTEL while pursuing B.E.</p></div>
+      <div class="achv-card"><span class="star">★</span><p>Completed dual internships in Java and IoT, demonstrating rapid skill acquisition across diverse tech domains.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-cta reveal">
+      <span class="section-tag">06 / CONTACT</span>
+      <h2 style="margin-top:14px;">Let's build something.</h2>
+      <p>Open to Software Developer and Embedded Systems internships and entry-level roles.</p>
+      <div class="contact-grid">
+        <a href="mailto:sanjeev230705@gmail.com">sanjeev230705@gmail.com</a>
+        <a href="tel:+918122669267">+91 81226 69267</a>
+        <span>Tiruchengode, Namakkal, Tamil Nadu</span>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Sanjeev P — Computer Science (IoT) Engineer</div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.12 });
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
